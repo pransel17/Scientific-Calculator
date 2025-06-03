@@ -1,2 +1,2 @@
 # Calculator
-Personal project 
+Personal project na tinatamad 
