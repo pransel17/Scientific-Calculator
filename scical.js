@@ -5,6 +5,8 @@ const inputDiv = document.getElementById("Input");
 const outputDiv = document.getElementById("Output");
 
 let expression = " ";
+let displayExpression = " ";
+
 let memory = 0;
 
 // declare muna all buttons
@@ -36,8 +38,9 @@ for (let id in buttonMap){
     const button = document.getElementById(id);
     if (button){
         button.addEventListener("click", () => {
-            expression += buttonMap[id];
-            inputDiv.textContent = expression;
+            expression += buttonMap[id];  
+            displayExpression += buttonMap[id];
+            inputDiv.textContent = displayExpression;
         })
     }
 }
@@ -63,16 +66,19 @@ document.getElementById("Equal-Button").addEventListener("click", () => {
 document.getElementById("AC-Button").addEventListener("click", () => {
 
     expression = " ";
-    inputDiv.textContent = " ";
-    outputDiv.textContent= " "; 
-
+    displayExpression = " ";
+    inputDiv.textContent = displayExpression;
+    outputDiv.textContent = " "; 
+    
 });
 
 document.getElementById("Arrow-Button").addEventListener("click", () => {
 
-    expression = expression.slice(0,-1);
-    inputDiv.textContent = expression;
-
+    expression = expression.slice(0, -1);
+    displayExpression = displayExpression.slice(0, -1);
+    inputDiv.textContent = displayExpression;
+    
+    
 })
 
 
@@ -108,7 +114,7 @@ document.getElementById("m--Button").addEventListener("click", () => {
 // Memory Recall
 document.getElementById("mr-Button").addEventListener("click", () => {
     expression += memory.toString();
-    inputDiv.textContent = expression;
+    inputDiv.textContent = displayExpression;
 });
 
 
@@ -174,98 +180,125 @@ function activateAltButtons() {
             switch (value) {
 
                 case 'del':
-                expression = expression.slice(0, -1); 
-                break;
-
-                case '(': case ')': case '.':
-                    expression += value;
+                    expression = expression.slice(0, -1);
+                    displayExpression = displayExpression.slice(0, -1);
                     break;
-
+            
+                case '(':
+                case ')':
+                case '.':
+                    expression += value;
+                    displayExpression += value;
+                    break;
+            
                 case '10^x':
                     expression += "10**";
+                    displayExpression += "10^";
                     break;
-
+            
                 case '1/x':
                     expression = `1/(${expression})`;
+                    displayExpression = `1/(${displayExpression})`;
                     break;
-
+            
                 case 'x^2':
                     expression += "**2";
+                    displayExpression += "²";
                     break;
-
+            
                 case 'x^3':
                     expression += "**3";
+                    displayExpression += "³";
                     break;
-
+            
                 case 'y^x':
-                    expression += "**"; 
+                    expression += "**";
+                    displayExpression += "^";
                     break;
-
+            
                 case 'x!':
                     expression = `factorial(${expression})`;
+                    displayExpression += "!";
                     break;
-
+            
                 case 'x√y':
                     expression += "**(1/";
+                    displayExpression += "√(";
                     break;
-
+            
                 case '√':
                     expression += "Math.sqrt(";
+                    displayExpression += "√(";
                     break;
-
+            
                 case 'lg':
                     expression += "Math.log10(";
+                    displayExpression += "lg(";
                     break;
-
+            
                 case 'ln':
                     expression += "Math.log(";
+                    displayExpression += "ln(";
                     break;
-
+            
                 case 'sin':
                     expression += "Math.sin(";
+                    displayExpression += "sin(";
                     break;
-
+            
                 case 'cos':
                     expression += "Math.cos(";
+                    displayExpression += "cos(";
                     break;
-
+            
                 case 'tan':
                     expression += "Math.tan(";
+                    displayExpression += "tan(";
                     break;
-
+            
                 case 'sinh':
                     expression += "Math.sinh(";
+                    displayExpression += "sinh(";
                     break;
-
+            
                 case 'cosh':
                     expression += "Math.cosh(";
+                    displayExpression += "cosh(";
                     break;
-
+            
                 case 'tanh':
                     expression += "Math.tanh(";
+                    displayExpression += "tanh(";
                     break;
-
+            
                 case 'e^x':
                     expression += "Math.exp(";
+                    displayExpression += "e^(";
                     break;
-
+            
                 case 'π':
                     expression += "Math.PI";
+                    displayExpression += "π";
                     break;
-
+            
                 case 'Rand':
-                    expression += Math.random().toString();
+                    let randNum = Math.random().toString();
+                    expression += randNum;
+                    displayExpression += randNum;
                     break;
-
+            
                 case 'EE':
-                    expression += "e"; 
+                    expression += "e";
+                    displayExpression += "e";
                     break;
-
+            
                 default:
                     break;
             }
-
-            inputDiv.textContent = expression;
+            
+            inputDiv.textContent = displayExpression;
+            
+ 
         });
     });
 }
