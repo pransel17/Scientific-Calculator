@@ -1,2 +1,2 @@
 # Calculator
-Personal project na tinatamad 
+A simple JavaScript calculator (HTML, CSS, JS) built for practice 🧮
