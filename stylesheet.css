@@ -137,19 +137,20 @@
 #History-Button{
     height: 26.67px;
     width: 26.67px;
-    background-image: url("/Pics/History-Button-Pic.png");
+    background-image: url("History-Button-Pic.png");
     background-size: cover;
     background-position: center;
     position: absolute;
     bottom: 10px;    /* distance from bottom of container */
     margin-left: 31px;
 
+
 }
 
 #Change-Keyboard{
     height: 26.67px;
     width: 26.67px;
-    background-image: url("/Pics/Change-Key-Pic.png");
+    background-image: url("Change-Key-Pic.png");
     background-size: cover;
     background-position: center;
     position: absolute;
